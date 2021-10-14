@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Design version="12" device_library_hint_path="../../../mtb_shared/mtb-psoc4-pdl/latest-v1.X/devicesupport.xml" xmlns="http://cypress.com/xsd/cydesignfile_v3">
-    <ToolInfo version="2.2.2.3107"/>
+    <ToolInfo version="2.4.0.5880"/>
     <Devices>
         <Device mpn="CY8C4146AZI-S433">
             <BlockConfig>
@@ -11,7 +11,7 @@
                 </Block>
                 <Block location="csd[0].csd[0]">
                     <Alias value="CYBSP_CSD"/>
-                    <Personality template="m0s8csd" version="1.0">
+                    <Personality template="m0s8csd" version="1.1">
                         <Param id="CapSenseEnable" value="true"/>
                         <Param id="CapSenseCore" value="0"/>
                         <Param id="SensorCount" value="2"/>
@@ -29,12 +29,12 @@
                         <Param id="vref" value="-1"/>
                         <Param id="operClkDivider" value="1"/>
                         <Param id="azTime" value="5"/>
-                        <Param id="csdInitTime" value="25"/>
+                        <Param id="csdInitTime" value="10"/>
                         <Param id="inFlash" value="true"/>
                         <Param id="CsdIdacEnable" value="false"/>
                         <Param id="CsdIdacAselect" value="CY_CSDIDAC_GPIO"/>
                         <Param id="CsdIdacBselect" value="CY_CSDIDAC_DISABLED"/>
-                        <Param id="csdIdacInitTime" value="25"/>
+                        <Param id="csdIdacInitTime" value="10"/>
                         <Param id="idacInFlash" value="true"/>
                     </Personality>
                 </Block>
@@ -300,6 +300,15 @@
                 <Block location="srss[0].clock[0].sysclk[0]">
                     <Personality template="m0s8sysclk" version="1.0">
                         <Param id="divider" value="1"/>
+                    </Personality>
+                </Block>
+                <Block location="srss[0].power[0]">
+                    <Personality template="m0s8power" version="1.0">
+                        <Param id="idlePwrMode" value="CY_CFG_PWR_MODE_DEEPSLEEP"/>
+                        <Param id="deepsleepLatency" value="0"/>
+                        <Param id="vddaMv" value="3300"/>
+                        <Param id="vdddMv" value="3300"/>
+                        <Param id="AmuxPumpEn" value="false"/>
                     </Personality>
                 </Block>
             </BlockConfig>

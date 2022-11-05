@@ -7,7 +7,7 @@
 * Related Document: See README.md
 *
 *******************************************************************************
-* Copyright 2021, Cypress Semiconductor Corporation (an Infineon company) or
+* Copyright 2021-2022, Cypress Semiconductor Corporation (an Infineon company) or
 * an affiliate of Cypress Semiconductor Corporation.  All rights reserved.
 *
 * This software, including source code, documentation and related
@@ -166,7 +166,7 @@ int main(void)
 *******************************************************************************/
 static void initialize_capsense(void)
 {
-    cy_status status = CYRET_SUCCESS;
+    cy_capsense_status_t status = CY_CAPSENSE_STATUS_SUCCESS;
 
     /* CapSense interrupt configuration */
     const cy_stc_sysint_t capsense_interrupt_config =
@@ -178,7 +178,7 @@ static void initialize_capsense(void)
     /* Capture the CSD HW block and initialize it to the default state. */
     status = Cy_CapSense_Init(&cy_capsense_context);
 
-    if (CYRET_SUCCESS == status)
+    if (CY_CAPSENSE_STATUS_SUCCESS == status)
     {
         /* Initialize CapSense interrupt */
         Cy_SysInt_Init(&capsense_interrupt_config, capsense_isr);
@@ -189,7 +189,7 @@ static void initialize_capsense(void)
         status = Cy_CapSense_Enable(&cy_capsense_context);
     }
 
-    if(status != CYRET_SUCCESS)
+    if(status != CY_CAPSENSE_STATUS_SUCCESS)
     {
         /* This status could fail before tuning the sensors correctly.
          * Ensure that this function passes after the CapSense sensors are tuned
@@ -240,7 +240,7 @@ static void initialize_capsense_tuner(void)
      * the Tuner or the Bridge Control Panel can read this buffer but you can
      * connect only one tool at a time.
      */
-    Cy_SCB_EZI2C_SetBuffer1(CYBSP_EZI2C_HW, (uint8 *)&cy_capsense_tuner,
+    Cy_SCB_EZI2C_SetBuffer1(CYBSP_EZI2C_HW, (uint8_t *)&cy_capsense_tuner,
                             sizeof(cy_capsense_tuner), sizeof(cy_capsense_tuner),
                             &ezi2c_context);
 
